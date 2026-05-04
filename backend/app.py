@@ -5,10 +5,14 @@ from flask_bcrypt import Bcrypt # Handle password hashing and verification
 from flask_sqlalchemy import SQLAlchemy #ORM (Object Relational Mapping)
 import jwt # PyJwt Library, create and decode JSON Web Tokens for auth
 import datetime #Handle exp times for JWT tokens
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__) #init Flask app
 #Config
-app.config['SECRET_KEY'] = 'alkia15+_$' #Secret key to secure sessionns and by PyJWT to sign tokens. TEMP.
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY") #Secret key to secure sessionns and by PyJWT to sign tokens. TEMP.
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' # Config db URI for alch. Point to SQLite db (site.db)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #No need to track mods; 
  
